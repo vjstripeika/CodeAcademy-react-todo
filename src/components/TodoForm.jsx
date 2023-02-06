@@ -1,13 +1,9 @@
+import Input from "./Input";
+import { useState } from "react";
+
 const formStyle = {
   display: "flex",
   height: "45px",
-};
-
-const inputStyle = {
-  borderRadius: 0,
-  border: 0,
-  backgroundColor: "#eee",
-  padding: "0.5rem",
 };
 
 const buttonStyle = {
@@ -19,12 +15,23 @@ const buttonStyle = {
   color: "#eee",
 };
 
-const TodoForm = () => {
+const TodoForm = (props) => {
+  const [inputValue, setInputValue] = useState();
+
+  const handleChange = (myValue) => setInputValue(myValue);
+  const handleClick = () => {
+    if (props.onSubmit) {
+      props.onSubmit(inputValue);
+    }
+  };
+
   return (
     <div>
       <div style={formStyle}>
-        <input style={inputStyle} />
-        <button style={buttonStyle}>Add todo</button>
+        <Input onChange={handleChange} />
+        <button style={buttonStyle} onClick={handleClick}>
+          Add todo
+        </button>
       </div>
     </div>
   );

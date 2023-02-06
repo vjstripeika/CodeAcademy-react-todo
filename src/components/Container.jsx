@@ -6,7 +6,9 @@ const containerStyle = {
   maxWidth: "960px",
 };
 
-const Container = ({ children }) => {
+const Container = (props) => {
+  const { children } = props;
+  console.log(children)
   return <div style={containerStyle}>{children}</div>;
 };
 
